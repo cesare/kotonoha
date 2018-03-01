@@ -1,5 +1,6 @@
 use indexmap::IndexMap;
 
+#[derive(Default)]
 pub struct Vocabulary {
     words: IndexMap<String, u32>,
 }
