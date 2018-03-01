@@ -13,11 +13,13 @@ impl Vocabulary {
     }
 
     pub fn add(&mut self, word: &str) -> u32 {
-        if !self.words.contains_key(word) {
-            let next_id = self.words.len();
-            self.words.insert(word.to_owned(), next_id as u32);
-        }
-        *self.words.get(word).unwrap()
+        self.find_id(word).unwrap_or_else(|| self.register(word))
+    }
+
+    fn register(&mut self, word: &str) -> u32 {
+        let next_id = self.words.len() as u32;
+        self.words.insert(word.to_owned(), next_id);
+        next_id
     }
 
     pub fn find_id(&self, word: &str) -> Option<u32> {
