@@ -21,7 +21,7 @@ impl Vocabulary {
     }
 
     pub fn find_id(&self, word: &str) -> Option<u32> {
-        self.words.get(word).map(|&n| n)
+        self.words.get(word).cloned()
     }
 
     pub fn find_word(&self, id: u32) -> Option<&str> {
